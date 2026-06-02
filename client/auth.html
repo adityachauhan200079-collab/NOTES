@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Manan — Sign in</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .auth-page { display: grid; place-items: center; min-height: 100vh; padding: 2rem; }
+    .auth-wrapper { max-width: 520px; width: 100%; }
+    .top-links { display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem }
+    .top-links a { text-decoration:none; color:var(--muted) }
+  </style>
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-wrapper">
+      <div class="top-links">
+        <div class="brand">Manan</div>
+        <a href="/">Back</a>
+      </div>
+
+      <section class="card auth-card" aria-label="Authentication panel">
+        <header class="card-header">
+          <div>
+            <p class="card-kicker">Authentication</p>
+            <h1>Login or register</h1>
+          </div>
+        </header>
+
+        <div class="tabs" role="tablist" aria-label="Authentication mode">
+          <button id="show-login" class="active" type="button" role="tab" aria-selected="true">Login</button>
+          <button id="show-register" type="button" role="tab" aria-selected="false">Register</button>
+        </div>
+
+        <form id="login-form" novalidate>
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" placeholder="name@example.com" autocomplete="email" required />
+
+          <label for="login-password">Password</label>
+          <div class="password-field">
+            <input type="password" id="login-password" placeholder="Your password" autocomplete="current-password" required />
+            <button type="button" class="ghost-btn toggle-password" data-target="login-password" aria-label="Show password">Show</button>
+          </div>
+
+          <button class="primary-btn" type="submit">Sign In</button>
+        </form>
+
+        <form id="register-form" class="hidden" novalidate>
+          <label for="reg-name">Full name</label>
+          <input type="text" id="reg-name" placeholder="Jane Doe" autocomplete="name" required />
+
+          <label for="reg-email">Email</label>
+          <input type="email" id="reg-email" placeholder="name@example.com" autocomplete="email" required />
+
+          <label for="reg-password">Password</label>
+          <div class="password-field">
+            <input type="password" id="reg-password" placeholder="Create a strong password" autocomplete="new-password" required />
+            <button type="button" class="ghost-btn toggle-password" data-target="reg-password" aria-label="Show password">Show</button>
+          </div>
+
+          <button class="primary-btn" type="submit">Create Account</button>
+        </form>
+
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+      </section>
+    </div>
+  </div>
+
+  <script src="/auth.js"></script>
+</body>
+</html>
