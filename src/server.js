@@ -2,7 +2,9 @@ import express from 'express';
 import "dotenv/config";
 import cookieParser from 'cookie-parser';
 import path from 'path';
+
 import authRoutes from './modules/auth_module/auth.routes.js';
+import logsRoutes from './modules/logs_module/logs.routes.js';
 
 const app = express();
 
@@ -14,6 +16,7 @@ app.use(cookieParser());
 
 // Mount API routes
 app.use('/api/auth', authRoutes);
+app.use('/api/logs', logsRoutes);
 
 // Serve static frontend from /client
 app.use(express.static(path.join(process.cwd(), 'client')));

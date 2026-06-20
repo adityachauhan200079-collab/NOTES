@@ -1,23 +1,19 @@
-# Client (frontend)
+# Client Frontend
 
-This is a minimal static frontend for the Manan project. It is served from the project's `client/` folder.
+This folder contains the static browser UI for Manan.
 
-Quick start:
+See the root [README.md](../README.md) for full setup, API, and route documentation.
 
-1. Install server deps (if you haven't):
+Frontend pages:
 
-```bash
-npm install
-```
+- `index.html` landing page
+- `auth.html` sign in / register page
+- `logs.html` mood logs dashboard
+- `account.html` current account page
 
-2. Start the server:
+Frontend behavior:
 
-```bash
-npm run start
-```
-
-3. Open http://localhost:3000/ in your browser.
-
-Notes:
-- The frontend calls `/api/auth/login` and `/api/auth/register` and expects the backend to be running from the same origin.
-- The login request stores the returned `accessToken` in localStorage and the server sets a refresh cookie.
+- Uses `localStorage` for the access token.
+- Redirects logged-in users to `/logs.html`.
+- Calls `/api/auth/me` from `account.js`.
+- Calls `/api/logs` from `logs.js`.

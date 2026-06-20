@@ -1,5 +1,10 @@
 const THEME_KEY = 'manan-theme';
 const themeToggle = document.querySelector('#theme-toggle');
+const existingToken = localStorage.getItem('accessToken');
+
+if (existingToken && window.location.pathname === '/') {
+  window.location.href = '/logs.html';
+}
 
 const getPreferredTheme = () => {
   const storedTheme = localStorage.getItem(THEME_KEY);

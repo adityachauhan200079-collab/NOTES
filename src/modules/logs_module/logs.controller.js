@@ -1,18 +1,18 @@
 import {getAllLogsService, getLogByIdService, createLogService, updateLogService, deleteLogService} from './logs.service.js';
 
 const createLog = async (req, res) => {
-    result = await createLogService(req.body, req.user.id);
+    const result = await createLogService(req.body, req.user.id);
     res.status(201).json(result);
 }
 
 const getAllLogs = async (req, res) => {
-    result = await getAllLogsService(req.user.id);
+    const result = await getAllLogsService(req.user.id);
     res.status(200).json(result);
 }
 
 const getLogById = async (req, res) => {
     const id = req.params.id;
-    result = await getLogByIdService(id, req.user.id);  
+    const result = await getLogByIdService(id, req.user.id);  
     if (!result) {
         return res.status(404).json({ message: 'Log not found' });
     }   
@@ -21,7 +21,7 @@ const getLogById = async (req, res) => {
 
 const updateLog = async (req, res) => {
     const id = req.params.id;
-    result = await updateLogService(id, req.body, req.user.id); 
+    const result = await updateLogService(id, req.body, req.user.id); 
     if (!result) {
         return res.status(404).json({ message: 'Log not found' });
     }
@@ -36,3 +36,5 @@ const deleteLog = async (req, res) => {
     }
     res.status(200).json({ message: 'Log deleted successfully' });
 }
+
+export { createLog, getAllLogs, getLogById, updateLog, deleteLog };

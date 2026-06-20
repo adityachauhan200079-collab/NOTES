@@ -7,6 +7,11 @@ const showLogin = $('#show-login');
 const showRegister = $('#show-register');
 const submitButtons = Array.from(document.querySelectorAll('.primary-btn'));
 const passwordToggleButtons = Array.from(document.querySelectorAll('.toggle-password'));
+const existingToken = localStorage.getItem('accessToken');
+
+if (existingToken) {
+  window.location.href = '/logs.html';
+}
 
 const THEME_KEY = 'manan-theme';
 
@@ -91,8 +96,8 @@ loginForm.addEventListener('submit', async (e) => {
       if (!data?.accessToken) throw new Error('Missing access token');
       localStorage.setItem('accessToken', data.accessToken);
       setStatus('Login successful.', 'success');
-      // Redirect to root app or dashboard
-      window.location.href = '/';
+      // Redirect to logs page
+      window.location.href = '/logs.html';
     } else {
       setStatus(message || 'Login failed', 'error');
     }
