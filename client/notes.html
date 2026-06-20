@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <link rel="stylesheet" href="./css/notes.css">
+</head>
+<body>
+    
+    <nav>
+        
+        <p>Notes</p>
+        <form><input class="search" type="text" placeholder="search for your notes"></form>
+        <button id="create-note">Create Note</button>
+        <button id="post-notes" class="hidden">Save</button>
+        <a href""><img src="./assets/Numan Khan on Instagram_ _y2kat_.jpg" class="pfp" alt=""></a>
+    </nav>
+    
+    <main>
+        
+  
+            <aside class="notes-list-col" id="left-sidebar">
+                <p>All Notes</p>
+                <ul class="notes-list">
+                    <li>note1</li>
+                    <li>note2</li>
+                    <li>note3</li>
+                    <li>note4</li>
+                    <li>note5</li>
+                </ul>
+            </aside>
+       
+        <article class="note">
+            <div class="panel-btn">
+                <button id="toggle-left">☰</button>
+                
+                <button id="info-btn">𝒊</button>
+            </div>
+            <div id="note-form" class="hidden">
+                <input type="text" placeholder="Title" id="note-title" >
+                <textarea placeholder="Write your notes..." id="note-content"></textarea>
+            </div>
+            <div id="no-content">
+                <p>No Note Selected Yet</p>
+            </div>
+        </article>
+        <section id="right-sidebar" class="note-info-bar">
+            <p>Details of Current note</p>
+        </section>
+    </main>
+    
+    <script src="notes.js"></script>
+</body>
+</html>

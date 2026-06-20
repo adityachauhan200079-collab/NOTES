@@ -1,0 +1,198 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color:#202124 ;
+}
+
+nav {
+
+
+
+    padding: 8px;
+    display: flex;
+    
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #202124;
+    color: aliceblue;
+
+}
+
+nav p{
+    
+    margin: 10px 0 0 5px;
+}
+
+.pfp{
+    height: 40px;
+    border-radius: 15px;
+}
+
+
+
+.search{
+    height:30px;
+    width: 500px;
+    margin: 8px 0px 0px 200px;
+    background-color: #282a2c;
+    border: none;
+    
+}
+
+.search::placeholder{
+    text-align: center;
+}
+
+#create-note{
+    height:35px;
+    margin:5px 0 0 0;
+    border-radius: 8px;
+    padding: 10px;
+    border:none;
+    background-color: #99999b;
+}
+
+
+#create-note.hidden{
+    display: none;
+}
+
+
+main{
+    display: flex;
+}
+
+
+.notes-list-col{
+    color: white;
+    background-color: #282a2c;
+    height: min(90vh);
+    width: 25vw;
+    padding-top: 3vh;
+    transition: width 0.3s ease;
+    
+    
+}
+
+.notes-list-col p{
+    margin:0 0 0 20vh;
+}
+
+.note{
+    margin:0 2vh 0 2vh;
+    color: white;
+    background-color: #282a2c;
+    height: 90vh;
+    flex: 1;
+    padding-top: 3vh;
+}
+
+#toggle-left{
+    width:20px;
+    height: 20px;
+    margin: 0 0 0 15px;
+}
+
+.note-info-bar{
+    color: white;
+    background-color: #282a2c;
+    height: 90vh;
+    width: 25vw;
+    padding-top: 3vh;
+    transition: width 0.3s ease;
+}
+
+#info-btn{
+    margin: 0 15px 0 0;
+    width: 20px;
+}
+
+
+.hide-panel {
+    width: 0;
+    overflow:hidden;
+}
+
+.panel-btn{
+    display:flex;
+    justify-content: space-between;
+}
+
+#content{
+    margin: 50px 0 0 20px;
+}
+
+
+#note-form{
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0 0 0 ;
+    gap: 10px;
+    
+}
+
+#note-title{
+    background:transparent;
+    border:none;
+    margin: 0 0 0 20px ;
+    color:#99999b;
+    font-size: 50px;
+}
+
+#note-title:focus{
+    outline:none;
+    
+}
+
+#note-content{
+    background:transparent;
+    border:none;
+    margin: 0 0 0 20px ;
+    color:#99999b;
+    border:none;
+    outline:none;
+    box-shadow: none;
+    field-sizing: content;
+    resize: none;
+    
+}
+
+#note-title:focus{
+    outline:none;
+    
+}
+
+
+#note-form.hidden{
+    display:none;
+}
+
+#no-content{
+    display: flex;
+    justify-content: center;
+    margin:100px 0 0 0;
+    color:#99999b;
+}
+
+#no-content.hidden{
+    display:none;
+}
+
+#post-notes.hidden{
+    display:none;
+}
+
+#post-notes{
+    height:35px;
+    margin:5px 0 0 0;
+    border-radius: 8px;
+    padding: 10px;
+    border:none;
+    background-color: #99999b;
+}
+
+
