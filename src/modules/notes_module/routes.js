@@ -6,10 +6,6 @@ import { createNote , saveNote } from "./controllers.js";
 
 const route = Router();
 
-route.get("/",(req , res)=>{
-    res.send("Hello World!")
-})
-
 route.post("/createNote" , createNote)
 
 route.put("/saveNote" , saveNote)

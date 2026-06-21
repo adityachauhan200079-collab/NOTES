@@ -2,7 +2,7 @@ import express from "express"
 import "dotenv/config"
 import cors from "cors"
 
-import route from "./modules/notes/routes.js"
+import route from "./modules/notes_module/routes.js"
 
 const PORT = process.env.PORT||8080
 
