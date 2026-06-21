@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
-import { pool } from "../../common/db"
+import { pool } from "../../common/config/db"
 
 const saltRounds = 10
 
