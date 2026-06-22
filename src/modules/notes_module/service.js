@@ -1,4 +1,4 @@
-    import { pool } from "../../common/db.js"
+    import { pool } from "../../common/config/db.js"
     
     const createNoteService = async (data)=>{
 

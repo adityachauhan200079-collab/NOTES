@@ -1,11 +1,11 @@
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
-import { pool } from "../../common/config/db"
+import { pool } from "../../common/config/db.js"
 
 const saltRounds = 10
 
 async function hashPassword(data){
-    hashedData = await bcrypt.hash(data , saltRounds)
+    const hashedData = await bcrypt.hash(data , saltRounds)
 
     return hashedData
 
@@ -15,7 +15,7 @@ async function registerService(data){
     
     const {userName , pass} = data
     
-    const hashedPass = await hashedPassword(pass);
+    const hashedPass = await hashPassword(pass);
 
     const user = await pool.query("INSERT INTO users(username , hashed_password) VALUES ($1 , $2) RETURNING *", [userName , hashedPass])
 
@@ -40,7 +40,7 @@ if(!passCheack){
 }
 
 const ACCESS_TOKEN = jwt.sign({userName} , process.env.ACCESS_TOKEN_KEY , {expiresIn:'1h'})
-const REFRESH_TOKEN = jwt.sign({userName} , process.env.ACCESS_TOKEN_KEY , {expiresIn:'7d'})
+const REFRESH_TOKEN = jwt.sign({userName} , process.env.REFRESH_TOKEN_KEY , {expiresIn:'7d'})
 
 return {ACCESS_TOKEN:ACCESS_TOKEN , REFRESH_TOKEN:REFRESH_TOKEN}
 

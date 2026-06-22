@@ -4,10 +4,10 @@ import { fileURLToPath } from "url";
 
 import { createNote , saveNote } from "./controllers.js";
 
-const route = Router();
+const router = Router();
 
-route.post("/createNote" , createNote)
+router.post("/createNote" , createNote)
 
-route.put("/saveNote" , saveNote)
+router.put("/saveNote" , saveNote)
 
-export default route;
+export default router;

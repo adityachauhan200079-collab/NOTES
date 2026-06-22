@@ -34,7 +34,7 @@ let timer
 let currentNoteId = null;
 
 const createNoteId= async()=>{
-    const res = await fetch("http://localhost:8080/createNote" , {
+    const res = await fetch("http://localhost:8080/notes/createNote" , {
         method:"POST",
         headers:{
             "Content-Type": "application/json"
@@ -59,7 +59,7 @@ async function autoSave(data){
     
     timer = setTimeout(async() =>{
         console.log("Title Saved!");
-        const res = await fetch("localhost:8080/saveNote" , {
+        const res = await fetch("localhost:8080/notes/saveNote" , {
             method:"PUT",
             headers:{
                 "Content-Type":"application/json"
