@@ -1,4 +1,4 @@
-import { pool } from "../../common/config/db"
+import { pool } from "../../common/config/db.js"
 
 async function libraryService(userID){
 
@@ -8,4 +8,14 @@ async function libraryService(userID){
  
 }
 
-export {libraryService}
+async function addBookService(data){
+
+    const {userID , bookName} = data
+
+    const book = await pool.query("INSERT INTO books(user_id , book_name) VALUES($1 ,$2) RETURNING id ,book_name" , [userID , bookName])
+
+    const bookname = book.rows[0]
+
+}
+
+export {libraryService , addBookService}
