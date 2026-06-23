@@ -2,7 +2,7 @@ async function libraryController(req , res){
    
     const userID = req.user.userID
     try{
-    const books = libraryService(userID)
+    const books = await libraryService(userID)
 
     return res.status(200).json({
         message:"Your books found!",

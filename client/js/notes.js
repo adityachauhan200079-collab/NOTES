@@ -25,7 +25,7 @@ createNotebtn.addEventListener("click" , ()=>{
     noteForm.classList.remove("hidden");
     detailsPannel.classList.add("hide-panel")
     sidebar.classList.add("hide-panel")
-    // createNoteId()
+    createNoteId()
     document.documentElement.requestFullscreen()
 
 
