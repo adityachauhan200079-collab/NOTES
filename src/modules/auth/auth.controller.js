@@ -20,13 +20,19 @@ async function loginController(req , res){
        if(ACCESS_TOKEN!=null&&REFRESH_TOKEN!=null){
     res.cookie("ACCESS_TOKEN", ACCESS_TOKEN, {
         httpOnly: true,
-        maxAge:60*60*1000
+        sameSite:"none",
+        maxAge:60*60*1000,
+        secure: true,
+      
     });
 
     console.log(ACCESS_TOKEN)
     res.cookie("REFRESH_TOKEN" , REFRESH_TOKEN, {
         httpOnly: true,
-        maxAge:7*24*60*60*1000
+        sameSite:"none",
+        maxAge:7*24*60*60*1000,
+        secure: true,
+        
     });
 
     return res.json({

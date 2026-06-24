@@ -2,13 +2,13 @@ import jwt from "jsonwebtoken"
 
 
 async function authMiddleware(req , res , next){
+    console.log(req.cookies)
 
-    const data = req.headers.authorization
-
-    const ACCESS_TOKEN = data.split(" ")[1]
+    const data = req.cookies.ACCESS_TOKEN;
+    console.log(data)
     
     try{
-        const decoded = jwt.verify(ACCESS_TOKEN , process.env.ACCESS_TOKEN_KEY)
+        const decoded = jwt.verify(data , process.env.ACCESS_TOKEN_KEY)
         req.user = decoded;
         console.log(decoded)
         next()

@@ -17,6 +17,7 @@ loginBtn.addEventListener("click" , async ()=>{
 
     const res = await fetch("http://localhost:8080/auth/login",{
         method:'post',
+        credentials:"include",
         headers:{
             "content-type":"application/json"
         },
@@ -24,7 +25,7 @@ loginBtn.addEventListener("click" , async ()=>{
     }
     )
 if(res.ok){
-window.location.href = 'notes.html'
+window.location.href = 'library.html'
 }
 else{
     loginErr.classList.remove("hidden")
