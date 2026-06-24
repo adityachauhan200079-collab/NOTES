@@ -15,9 +15,9 @@ async function registerController(req , res){
 async function loginController(req , res){
     const data = req.body
 
+   
     const {ACCESS_TOKEN , REFRESH_TOKEN} = await loginService(data)
-
-    if(ACCESS_TOKEN&&REFRESH_TOKEN){
+       if(ACCESS_TOKEN!=null&&REFRESH_TOKEN!=null){
     res.cookie("ACCESS_TOKEN", ACCESS_TOKEN, {
         httpOnly: true,
         maxAge:60*60*1000
@@ -29,14 +29,20 @@ async function loginController(req , res){
         maxAge:7*24*60*60*1000
     });
 
-
     return res.json({
         message:"You are logged in"
     })
-}
-    return res.json({
+       }
+    else{
+        console.log("Wrong password")
+        return res.status(403).json({
         message:"Login failed!"
     })
-}
+    }
+
+
+    }
+    
+
 
 export {registerController , loginController}

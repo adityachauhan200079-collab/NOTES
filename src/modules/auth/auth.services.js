@@ -30,8 +30,15 @@ const {userName , pass} = data
 
 const hashedPass = await pool.query("SELECT hashed_password FROM users WHERE username = $1" , [userName])
 
-const passCheack = await bcrypt.compare(pass , hashedPass.rows[0].hashed_password)
 
+
+if(hashedPass.rowCount===0){
+    return {
+        ACCESS_TOKEN: null , 
+        REFRESH_TOKEN:null
+    }
+}
+const passCheack = await bcrypt.compare(pass , hashedPass.rows[0].hashed_password)
 
 if(!passCheack){
     return {
@@ -41,6 +48,8 @@ if(!passCheack){
 }
 
 const userIDquery = await pool.query("SELECT id FROM users WHERE username = ($1)" , [userName])
+
+
 const userID = userIDquery.rows[0].id
 
 const ACCESS_TOKEN = jwt.sign({userID: userID,username:userName} , process.env.ACCESS_TOKEN_KEY , {expiresIn:'1h'})

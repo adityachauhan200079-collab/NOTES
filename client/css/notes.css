@@ -12,6 +12,7 @@
 
 body{
     background-color:var(--background-color) ;
+    color:white;
 }
 
 
@@ -309,4 +310,16 @@ main{
 
 nav.hidden{
     display: none;
+}
+
+#credentials-error{
+    color:var(--primary-button-color)
+}
+
+#credentials-error.hidden{
+    display:none;
+}
+
+.dashboard{
+    display: flex;
 }

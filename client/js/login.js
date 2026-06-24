@@ -3,6 +3,8 @@ const passwordInput = document.querySelector(".password")
 
 const loginBtn = document.getElementById("login-btn")
 
+const loginErr = document.getElementById("credentials-error")
+
 
 loginBtn.addEventListener("click" , async ()=>{
     const username = usernameInput.value
@@ -21,8 +23,12 @@ loginBtn.addEventListener("click" , async ()=>{
         body:JSON.stringify(data)
     }
     )
-
-    console.log(res)
+if(res.ok){
+window.location.href = 'notes.html'
+}
+else{
+    loginErr.classList.remove("hidden")
+}
 
 })
 
