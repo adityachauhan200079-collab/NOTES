@@ -26,7 +26,6 @@ async function loginController(req , res){
       
     });
 
-    console.log(ACCESS_TOKEN)
     res.cookie("REFRESH_TOKEN" , REFRESH_TOKEN, {
         httpOnly: true,
         sameSite:"none",

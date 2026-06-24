@@ -320,6 +320,11 @@ nav.hidden{
     display:none;
 }
 
-.dashboard{
+.library-whole{
     display: flex;
 }
+.library{
+    display: flex;
+    flex-direction: column;
+}
+
