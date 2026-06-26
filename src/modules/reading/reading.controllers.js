@@ -11,7 +11,7 @@ async function getNotesController(req , res){
     }
     try{
         const result = await getNotesService(data)
-        console.log("This are notes after service:" , result)
+        
         return res.status(200).json({
             notes: result
             
@@ -78,10 +78,16 @@ const saveNoteControllers = async(req , res)=>{
     const data = req.body
 
     const result = saveNoteService(data)
-
-    res.json({
+    try{
+    res.status(200).json({
         message:"Successfully saved"
     })
+    }
+    catch(err){
+        res.status(400).json({
+            message:"Autosave unsuccessfull"
+        })
+    }
 }
 
 

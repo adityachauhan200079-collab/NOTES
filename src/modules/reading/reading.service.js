@@ -40,7 +40,7 @@
     const saveNoteService = async(data)=>{
         const {noteID , title , content} = data
 
-        const result = await pool.query("UPDATE notes SET title = $1 AND content =$2 WHERE id = $3" , [title , content , noteID])
+        const result = await pool.query("UPDATE notes SET title = $1 ,content =$2 WHERE id = $3" , [title , content , noteID])
     }
 
 

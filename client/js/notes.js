@@ -14,6 +14,10 @@ const notesList = document.querySelector(".notes-list")
 const noteTitle = document.getElementById("note-title")
 const noteContent = document.getElementById("note-content")
 
+let timer
+let currentNoteId = null
+
+
 window.addEventListener("DOMContentLoaded" , ()=>{
     createNoteList()
 })
@@ -83,15 +87,16 @@ async function createNoteList(){
             const title = result.data.title
             const content = result.data.content
             openNoteEditor(title , content)
-
-
-
+            autoSaveNote(note.id)
+            
+            
         })
         
         if(note.title===""){
-        list.textContent = `empty note`
-        list.classList.add("empty-note")
-        notesList.appendChild(list)
+            list.textContent = `empty note`
+            list.classList.add("empty-note")
+            notesList.appendChild(list)
+            autoSaveNote(note.id)
         
        
         return
@@ -106,9 +111,6 @@ async function createNoteList(){
  
 }
 
-let timer
-
-let currentNoteId = null;
 
 const createNoteId= async()=>{
 
@@ -127,10 +129,33 @@ const createNoteId= async()=>{
     currentNoteId = note.data.id;
     console.log(currentNoteId)
 }
+async function autoSaveNote(noteID){
 
 noteTitle.addEventListener("input" , () =>{
-    autoSave(noteTitle.value)
+
+    const data = {
+
+        noteID:noteID,
+        title:noteTitle.value,
+        content:noteContent.value
+
+    }
+    
+    autoSave(data)
+    
 })
+
+noteContent.addEventListener("input" , ()=>{
+    const data = {
+        noteID:noteID,
+        title:noteTitle.value,
+        content:noteContent.value
+    }
+
+    autoSave(data)
+
+})
+}
 
 
 async function autoSave(data){
@@ -138,13 +163,14 @@ async function autoSave(data){
     
     timer = setTimeout(async() =>{
         console.log("Title Saved!");
-        const res = await fetch("localhost:8080/notes/saveNote" , {
+        const res = await fetch("http://localhost:8080/notes/saveNote" , {
             method:"PUT",
             headers:{
                 "Content-Type":"application/json"
             },
+            credentials:"include",
             body:JSON.stringify(data)
         })
-
+        createNoteList()
     },1000);
 }
