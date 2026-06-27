@@ -1,3 +1,5 @@
+import apifetch from "./apifetch.js"
+
 const nav = document.getElementsByTagName("nav")
 
 const toggleLeft = document.getElementById("toggle-left")
@@ -58,11 +60,11 @@ async function getNotes(){
     
     const bookID = params.get("bookID")
 
-    const result = await fetch(`http://localhost:8080/notes/getNotes/${bookID}` , {
+    const result = await apifetch(`http://localhost:8080/notes/getNotes/${bookID}` , {
         method:"GET",
         credentials:"include"
     })
-    return result.json()
+    return result
 }
 
 async function createNoteList(){
@@ -77,12 +79,12 @@ async function createNoteList(){
         const list = document.createElement("li")
 
         list.addEventListener("click" , async()=>{
-            const res = await fetch(`http://localhost:8080/notes/getNote/${note.id}` , {
+            const res = await apifetch(`http://localhost:8080/notes/getNote/${note.id}` , {
                 method:"GET",
                 credentials:"include"
             })
 
-            const result = await res.json()
+            const result = await res
 
             const title = result.data.title
             const content = result.data.content
@@ -117,14 +119,14 @@ const createNoteId= async()=>{
     const params = new URLSearchParams(window.location.search)
     const bookID =  params.get("bookID")
 
-    const res = await fetch(`http://localhost:8080/notes/createNote/${bookID}` , {
+    const res = await apifetch(`http://localhost:8080/notes/createNote/${bookID}` , {
         method:"POST",
         
         credentials:"include",
 
     })
 
-    const note = await res.json();
+    const note = await res;
     console.log(note)
     currentNoteId = note.data.id;
     console.log(currentNoteId)
@@ -163,7 +165,7 @@ async function autoSave(data){
     
     timer = setTimeout(async() =>{
         console.log("Title Saved!");
-        const res = await fetch("http://localhost:8080/notes/saveNote" , {
+        const res = await apifetch("http://localhost:8080/notes/saveNote" , {
             method:"PUT",
             headers:{
                 "Content-Type":"application/json"

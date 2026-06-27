@@ -1,3 +1,5 @@
+import apifetch from "./apifetch.js"
+
 const list = document.getElementById("book-list")
 
 const bookNameInput = document.getElementById("book-name-input")
@@ -15,14 +17,16 @@ async function createBookList(books){
 
         bookDelete.textContent = "Remove"
         bookLink.textContent = book.book_name
-        bookLink.href = `http://127.0.0.1:5501/client/notes.html?bookID=${bookID}`
+        bookLink.href = `http://127.0.0.1:5500/client/notes.html?bookID=${bookID}`
 
 
         bookDelete.addEventListener("click" , async()=>{
-           const res = await fetch(`http://localhost:8080/books/deleteBook/${bookID}`,{
+           
+            const res = await apifetch(`http://localhost:8080/books/deleteBook/${bookID}` , {
             method:"DELETE",
             credentials:"include"
             })
+
             list.removeChild(bookElement)
         })
     
@@ -39,12 +43,14 @@ async function createBookList(books){
 
 async function getBooks(){
 
-    const res = await fetch("http://localhost:8080/books/library" , {
+    const options = {
         method:"GET",
         credentials:"include"
-    })
+    }
 
-    const data = await res.json();
+    const res = await apifetch("http://localhost:8080/books/library" , options);
+
+    const data = res
 
     const books = data.books
 
@@ -63,7 +69,7 @@ window.addEventListener("DOMContentLoaded" , async()=>{
 
 addBookBtn.addEventListener("click" , async()=>{
     const bookDetail ={ bookName:bookNameInput.value }
-    const res = await fetch("http://localhost:8080/books/addbooks" , {
+    const res = await apifetch("http://localhost:8080/books/addbooks" , {
         method: "POST",
         credentials:"include",
         headers:{"content-type":"application/json"},

@@ -1,3 +1,5 @@
+import apifetch from "./apifetch.js"
+
 const usernameInput = document.querySelector(".username")
 const passwordInput = document.querySelector(".password")
 
@@ -13,14 +15,18 @@ registerBtn.addEventListener("click" , async ()=>{
         pass:password
     }
 
-    const res = await fetch("http://localhost:8080/auth/register",{
-        method:'post',
+    
+    const options = {
+        method:'POST',
         headers:{
             "content-type":"application/json"
         },
         body:JSON.stringify(data)
     }
-    )
+    
+    const res = await apifetch("http://localhost:8080/auth/register" , options)
+
+    console.log(res)
 
 })
 
